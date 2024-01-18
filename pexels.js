@@ -7,47 +7,47 @@ const myUrl = 'https://api.pexels.com/v1/search?query=animals'
 const primaryLoadButton = document.getElementById('load-images')
 const editButton = document.getElementsByClassName('btn-outline-secondary')
 console.log(editButton)
-primaryLoadButton.addEventListener('click', function () {
-    // Effettua una richiesta API a Pexels
-    fetch(myUrl, {
-      headers: {
-        Authorization: apiKey,
-      },
-    })
-    .then((response) => {
-       
-        console.log('response', response)
-        if (response.ok) {
-          
-          return response.json()
-        } else {
-          // 
-          throw new Error('errore nella chiamata')
-        }
-      })
-      .then((data) =>{
-        
-const photosObject = data.photos
 
-const arrayImgTag = document.getElementsByTagName("img");
 
-console.log(photosObject);
-for (let i = 0; i < arrayImgTag.length; i++) {
- arrayImgTag[i].src = photosObject[i].src.tiny;
-}
 
-for (let i = 0; i < editButton.length; i++) {
 
-if(i % 2 !== 0)
-    editButton[i].textContent = 'Hide';
+
+primaryLoadButton.addEventListener("click", function () {
+ // Effettua una richiesta API a Pexels
+ fetch(myUrl, {
+  headers: {
+   Authorization: apiKey,
+  },
+ })
+  .then((response) => {
+   console.log("response", response);
+   if (response.ok) {
+    return response.json();
+   } else {
+    //
+    throw new Error("errore nella chiamata");
    }
-    
-});
+  })
+  .then((data) => {
+   const photosObject = data.photos;
 
-    
+   const arrayImgTag = document.getElementsByTagName("img");
+
+   console.log(photosObject);
+   for (let i = 0; i < arrayImgTag.length; i++) {
+    arrayImgTag[i].src = photosObject[i].src.tiny;
+   }
+
+   for (let i = 0; i < editButton.length; i++) {
+    if (i % 2 !== 0) editButton[i].textContent = "Hide";
+    editButton[i].addEventListener("click", function (e) {
+     e.target.closest(".col-md-4").remove();
+    });
+   }
+  });
 });
 
   
-  
+
         
 
