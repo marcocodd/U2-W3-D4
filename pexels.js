@@ -34,8 +34,9 @@ console.log(arrayImgTag)
 
 for (let i = 0; i < arrayImgTag.length; i++) {
     
-arrayImgTag[i].src = photosObject[i].src.small
-    
+arrayImgTag[i].src = photosObject[i].src.tiny;
+arrayImgTag[i].classList.add("img-fluid");
+
 }
 
 
