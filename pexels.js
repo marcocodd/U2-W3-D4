@@ -2,11 +2,11 @@
 
 const apiKey = 'GtnIedu6865oHKAFc8f7ECt9I5zAik2Dop1xWParewrFouKg0zXTnHhZ'
 const myUrl = 'https://api.pexels.com/v1/search?query=animals'
-//  seleziono il button load images
+//  seleziono i bottoni che mi serviranno
 
 const primaryLoadButton = document.getElementById('load-images')
-
-
+const editButton = document.getElementsByClassName('btn-outline-secondary')
+console.log(editButton)
 primaryLoadButton.addEventListener('click', function () {
     // Effettua una richiesta API a Pexels
     fetch(myUrl, {
@@ -28,22 +28,26 @@ primaryLoadButton.addEventListener('click', function () {
       .then((data) =>{
         
 const photosObject = data.photos
-console.log('ricerca foto', photosObject)
-const arrayImgTag = document.getElementsByTagName('img')
-console.log(arrayImgTag)
 
+const arrayImgTag = document.getElementsByTagName("img");
+
+console.log(photosObject);
 for (let i = 0; i < arrayImgTag.length; i++) {
-    
-arrayImgTag[i].src = photosObject[i].src.tiny;
-arrayImgTag[i].classList.add("img-fluid");
-
+ arrayImgTag[i].src = photosObject[i].src.tiny;
 }
 
+for (let i = 0; i < editButton.length; i++) {
+
+if(i % 2 !== 0)
+    editButton[i].textContent = 'Hide';
+   }
+    
+});
 
     
 });
-   
-  })
+
+  
   
         
 
